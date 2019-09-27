@@ -44,7 +44,7 @@ exports.createBook = functions.https.onCall(async (data, context) => {
   const base64EncodedImageString = data.bookCover.replace(/^data:image\/\w+;base64,/, '');
   const imageBuffer = new Buffer(base64EncodedImageString, 'base64');
 
-  const filename = `bookCovers/${data.name}.${mimeTypes.detectExtension(mimeType)}`;
+  const filename = `bookCovers/${data.bookName}.${mimeTypes.detectExtension(mimeType)}`;
   const file = admin.storage().bucket().file(filename);
   await file.save(imageBuffer, { contentType: 'image/jpeg' });
   const fileUrl = await file.getSignedUrl({ action: 'read', expires: '03-09-2491' }).then(urls => urls[0]);
