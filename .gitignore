@@ -1,4 +1,6 @@
 .idea/
+.vscode/
+.prettierrc
 # Logs
 logs
 *.log
